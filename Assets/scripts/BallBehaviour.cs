@@ -27,7 +27,7 @@ public class BallBehaviour : MonoBehaviour
 
           if (Input.GetKey(KeyCode.Space))
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("pongWeek3");
 
         }
 
