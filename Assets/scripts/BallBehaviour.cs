@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,10 @@ public class BallBehaviour : MonoBehaviour
    
     public float size = 1.0f;
     public float speed = 5f;
-    public int score = 0;
+    public BatBehaviour player1;
+    public BatBehaviour player2;
+
+ 
     bool isPlaying = true;
     Vector3 direction;
 
@@ -25,11 +29,11 @@ public class BallBehaviour : MonoBehaviour
             transform.localPosition += direction * speed * Time.deltaTime;
         }
 
-          if (Input.GetKey(KeyCode.Space))
-        {
-            SceneManager.LoadScene("pongWeek3");
+     //     if (Input.GetKey(KeyCode.Space))
+      //  {
+      //      SceneManager.LoadScene("pongWeek3");
 
-        }
+     //   }
 
     }
 
@@ -38,19 +42,19 @@ public class BallBehaviour : MonoBehaviour
         switch (collision.gameObject.name)
         {
             case "Left_Bat":
-                IncreaseScore();
+               
                 ChangeDirection(Vector3.right);
                 break;
             case "Right_Bat":
-                IncreaseScore();
+               
                 ChangeDirection(Vector3.left);
                 break;
-            case "Left_Goal":
-                Debug.Log("Player 2 wins!!");
+            case "left goal":
+                player2.IncreaseScore();
                 isPlaying = false;
                 break;
-            case "Right_Goal":
-                Debug.Log("Player 1 wins!!");
+            case "right goal":
+                player1.IncreaseScore();
                 isPlaying = false;
                 break;
             default:
@@ -62,13 +66,6 @@ public class BallBehaviour : MonoBehaviour
 
     }
 
-    private void IncreaseScore()
-    {
-        score++;
-        Debug.Log("Number of passes: " + score);
-        speed += 0.5f;
-    
-    }
 
     private void ChangeDirection(Vector3 newDirection)
     {

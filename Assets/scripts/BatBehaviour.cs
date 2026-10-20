@@ -1,9 +1,13 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class BatBehaviour : MonoBehaviour
 {
 
     float speed = 5f;
+    public int score = 0;
+    public TextMeshProUGUI scoreText;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,5 +42,21 @@ public class BatBehaviour : MonoBehaviour
         }
 
     }
+
+    public void IncreaseScore()
+    {
+
+
+
+        score++;
+        scoreText.text = gameObject.name == "Left_Bat" ? "Player 1 - " + score : "Player 2 - " + score;
+
+        speed += 0.5f;
+
+    }
+
+    public int GetScore()
+    { return score; }
+
 }
 
